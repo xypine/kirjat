@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { slide } from 'svelte/transition';
+	import { scale, fade } from "svelte/transition";
 
-	export let value: string | null = null;
+	export let value: string = "";
 	let input_width;
+	$: split = value.split(",").map((name) => name.trim());
+	$: show_tip = !value || split.length < 2;
 </script>
 
 <main>
@@ -16,17 +18,15 @@
 				autofocus={value == null}
 			/>
 		</div>
-		{#if value}
-			{@const split = value.split(',').map((name) => name.trim())}
-			{#if split.length > 1}
-				<div transition:slide|local class="multiple" style="--input-width:{input_width}px;">
-					<p>→</p>
-					{#each split as term}
-						<span class="search-term">{term}</span>
-					{/each}
-				</div>
+		<div class="multiple" style="--input-width:{input_width}px;">
+			{#if show_tip}
+				<p in:fade={{ duration: 1000 }} class="tip">erota useampi haku pilkulla</p>
+			{:else}
+				{#each split as term, index}
+					<span in:scale={{ delay: index * 50 }} class="search-term">{term}</span>
+				{/each}
 			{/if}
-		{/if}
+		</div>
 	</form>
 </main>
 
@@ -55,12 +55,16 @@
 		max-width: var(--input-width, 274px);
 	}
 	.multiple > * {
+		border: 1px solid transparent;
 		padding-block: 0.2em;
 	}
 	.search-term {
 		border-radius: 999px;
-		border: 1px solid #41b88399;
+		border-color: #41b88399;
 		background-color: #41b88322;
 		padding-inline: 0.5em;
+	}
+	.tip {
+		opacity: 0.333;
 	}
 </style>
