@@ -31,6 +31,13 @@
 </main>
 
 <style>
+	form {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 0.25em;
+	}
 	input {
 		border-radius: 999em;
 		padding: 0.5em 1.25em;
@@ -41,18 +48,22 @@
 		outline: none;
 
 		font-size: 1em;
+
+		min-width: min(500px, 90vw);
+		box-sizing: border-box;
 	}
 	input:focus {
 		background-color: #1f1f1f;
 	}
 	.multiple {
 		box-sizing: border-box;
-		padding: 0.5em 1.25em;
+		padding-inline: 1.25em;
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: center;
 		gap: 0.25em;
 
-		max-width: var(--input-width, 274px);
+		max-width: 70ch;
 	}
 	.multiple > * {
 		border: 1px solid transparent;
@@ -63,8 +74,11 @@
 		border-color: #41b88399;
 		background-color: #41b88322;
 		padding-inline: 0.5em;
+		opacity: 0.9;
 	}
 	.tip {
 		opacity: 0.333;
+		width: 100%;
+		text-align: center;
 	}
 </style>

@@ -38,7 +38,7 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		gap: 0.25em;
+		gap: 0.5em;
 	}
 	.footer {
 		box-sizing: border-box;

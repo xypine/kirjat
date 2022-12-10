@@ -1,11 +1,11 @@
 <script lang="ts">
-	import SearchBar from '$lib/components/SearchBar.svelte';
-	import { page } from '$app/stores';
+	import SearchBar from "$lib/components/SearchBar.svelte";
+	import { page } from "$app/stores";
 </script>
 
 <div class="top-bar">
 	<h1 class="logo"><a href="/">Kirjat</a></h1>
-	<SearchBar value={$page.url.searchParams.get('names')} />
+	<SearchBar value={$page.url.searchParams.get("names")} />
 </div>
 
 <slot />
@@ -17,5 +17,6 @@
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
+		gap: 0.5em;
 	}
 </style>
